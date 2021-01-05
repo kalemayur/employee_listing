@@ -1,0 +1,32 @@
+<center>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Employee name:</strong>
+    <%= @employee.employee_name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @employee.address %>
+  </p>
+
+  <p>
+    <strong>Email address:</strong>
+    <%= @employee.email_address %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= @employee.phone %>
+  </p>
+
+  <p>
+    <strong>Date of birth:</strong>
+    <%= @employee.date_of_birth %>
+  </p>
+  <%= link_to(image_tag(@employee.image.thumb.url, alt: 'Image'), @employee.image.url, target: '_blank') if @employee.image? %>
+
+  <%= link_to 'Edit', edit_employee_path(@employee) %> |
+  <%= link_to 'Back', employees_path %>
+</center>

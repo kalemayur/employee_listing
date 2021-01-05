@@ -1,0 +1,44 @@
+<center>
+  <p id="notice"><%= notice %></p>
+  <h1>Listing Employees</h1>
+  <%= form_tag(employees_path, method: :get) do%>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ("Search")%>
+  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee name</th>
+        <th>Address</th>
+        <th>Email address</th>
+        <th>Phone</th>
+        <th>Date of birth</th>
+        <th>Image</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.employee_name %></td>
+          <td><%= employee.address %></td>
+          <td><%= employee.email_address %></td>
+          <td><%= employee.phone %></td>
+          <td><%= employee.date_of_birth %></td>
+          <td><%= link_to(image_tag(employee.image.small_thumb.url, alt: 'Image'), employee.image.url, target: '_blank') if employee.image? %></td>
+          <td><%= link_to 'Show', employee %></td>
+          <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+          <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Employee', new_employee_path %>
+
+  <%= will_paginate @employees %>
+
+</center>
